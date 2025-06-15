@@ -18,6 +18,7 @@ Idéal pour tester rapidement des idées ou apprendre le développement web.
 1. Écris ton code dans la zone de texte.
 2. Clique sur **Exécuter le code** pour voir le rendu en bas.
 3. Amuse-toi à tester toutes tes idées de code !
+4. Essaye de trouver les secrets !
 
 ---
 
