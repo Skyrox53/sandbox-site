@@ -35,4 +35,4 @@ Créé par Skyrox53.
 
 ## Licence
 
-Ce projet est libre, utilise-le à ta guise!
+Ce projet est libre, utilise-le à ta guise !
