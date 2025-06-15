@@ -65,5 +65,24 @@
       output.srcdoc = code;
     }
   </script>
+      </script>
+    <script>
+    // 1st secret !
+    let secret = "secret";
+    let input = "";
+
+    document.addEventListener("keydown", function(event) {
+      input += event.key;
+      if (input.length > secret.length) {
+        input = input.slice(-secret.length);
+      }
+      if (input === secret) {
+        alert("🎉 Bravo, tu as trouvé l'easter egg !");
+        input = "";
+      }
+    });
+    </script>
+  </body>
+</html>
 </body>
 </html>
