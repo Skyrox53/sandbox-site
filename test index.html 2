@@ -71,24 +71,43 @@
       const output = document.getElementById("output");
       const secretZone = document.getElementById("secret-message");
 
-      // Injecte le code dans l'iframe
-      output.srcdoc = code;
-
-      // Affiche un message secret dans l'interface principale
+      // Affiche le message en dehors de l'iframe
       if (code.toLowerCase().includes("secret")) {
         secretZone.style.display = "block";
       } else {
         secretZone.style.display = "none";
       }
 
-      // Ajoute un message secret directement dans l'iframe si le mot est détecté
+      // Injecte le code + message secret animé dans l'iframe
       if (code.toLowerCase().includes("secret")) {
         const secretScript = `
           <script>
-            document.body.insertAdjacentHTML('beforeend', '<div style="position:fixed;bottom:10px;right:10px;padding:10px;background:#000;color:#0f0;border-radius:5px;font-family:monospace;">🎉 Secret détecté !</div>');
+            const toast = document.createElement('div');
+            toast.textContent = '🎉 Secret détecté !';
+            toast.className = 'secret-toast';
+            Object.assign(toast.style, {
+              position: 'fixed',
+              bottom: '10px',
+              right: '10px',
+              padding: '10px',
+              background: '#000',
+              color: '#0f0',
+              borderRadius: '5px',
+              fontFamily: 'monospace',
+              zIndex: 9999,
+              transition: 'opacity 1s',
+              opacity: '1'
+            });
+            document.body.appendChild(toast);
+            setTimeout(() => {
+              toast.style.opacity = '0';
+              setTimeout(() => toast.remove(), 1000);
+            }, 4000);
           <\/script>
         `;
         output.srcdoc = code + secretScript;
+      } else {
+        output.srcdoc = code;
       }
     }
   </script>
