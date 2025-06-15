@@ -49,7 +49,7 @@
   </style>
 </head>
 <body>
-  <h1>🎮 Bac à sable Web</h1>
+  <h1>🎮 Bac à sable de code Web</h1>
   <div id="sandbox">
     <label for="code">Écris ton code HTML/CSS/JS ici :</label>
     <textarea id="code"><h2>Hello World !</h2><p>Tu peux écrire ici du code HTML, CSS ou JavaScript.</p></textarea>
