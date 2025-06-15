@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bac à sable interactif</title>
+  <title>Bac à sable interactif — Bêta</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -56,7 +56,7 @@
   </style>
 </head>
 <body>
-  <h1>🎮 Bac à sable Web</h1>
+  <h1>🎮 Bac à sable Web — Bêta</h1>
   <div id="sandbox">
     <label for="code">Écris ton code HTML/CSS/JS ici :</label>
     <textarea id="code"><h2>Hello World !</h2><p>Tu peux écrire ici du code HTML, CSS ou JavaScript.</p></textarea>
@@ -69,14 +69,26 @@
     function runCode() {
       const code = document.getElementById("code").value;
       const output = document.getElementById("output");
+      const secretZone = document.getElementById("secret-message");
+
+      // Injecte le code dans l'iframe
       output.srcdoc = code;
 
-      // Vérifie s'il y a le mot "secret"
-      const secretZone = document.getElementById("secret-message");
+      // Affiche un message secret dans l'interface principale
       if (code.toLowerCase().includes("secret")) {
         secretZone.style.display = "block";
       } else {
         secretZone.style.display = "none";
+      }
+
+      // Ajoute un message secret directement dans l'iframe si le mot est détecté
+      if (code.toLowerCase().includes("secret")) {
+        const secretScript = `
+          <script>
+            document.body.insertAdjacentHTML('beforeend', '<div style="position:fixed;bottom:10px;right:10px;padding:10px;background:#000;color:#0f0;border-radius:5px;font-family:monospace;">🎉 Secret détecté !</div>');
+          <\/script>
+        `;
+        output.srcdoc = code + secretScript;
       }
     }
   </script>
